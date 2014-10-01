@@ -1,0 +1,45 @@
+<div class="container push-top-50" ng-controller="postCtrl">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="text-primary">{{post.title}}</h1>
+			<p class="lead text-info">By <em>{{post.author}}</em></p>
+			<p class="text-justify">
+			{{post.contents}}
+			</p>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h3 class="text-info">Comments: </h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<p>Add a Comment</p>
+			<form  class="form">
+				<div class="form-group">
+					<label> Name: </label>
+				<input type="text" ng-model="newCom.author" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Comment: </label>
+					<textarea ng-model="newCom.comment" class="form-control" ></textarea>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" ng-click="sendComment()">Send Comment</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12" ng-if="comments.length == 0">
+			<h4 class="text-danger">No comments!</h4>
+		</div>
+	</div>
+	<div class="row" ng-repeat="comment in comments">
+		<div class="col-xs-12" >
+			<p class="lead"><em>{{comment.author}} wrote:</em></p>
+			<p class="text-justify">{{comment.comment}}</p>
+		</div>
+	</div>
+</div>
