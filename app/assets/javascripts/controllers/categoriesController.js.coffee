@@ -5,5 +5,11 @@ controllers.controller 'categoryCtrl', ['$scope', 'categoryService', ($scope, ca
 	$scope.getCategories = ->
 		categoryService.getAll().then( (data) ->
 			$scope.categories = data
+			return
+		, 
+		(status)-> 
+			console.log(status)
 		)
+		return
+	return
 ]

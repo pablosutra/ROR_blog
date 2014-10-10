@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 		categories = Category.all
 
 		respond_with(categories) do |format|
-      		format.json { render :json => categories.as_json }
+      		format.json { render :json => categories }
     	end
 	end
 end

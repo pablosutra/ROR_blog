@@ -18,8 +18,7 @@ class PostsController < ApplicationController
 	def create
 		category = Category.find(params[:category])
 		post = Post.create({title: params[:title], contents: params[:content], category: category})
-		if post.valid?
-			post.save
+		if post.valid? && post.save
 			@graph.put_wall_post(post.title, :link => 'http://localhost:3030/post/'+post.id.to_s)
 		else
 			render 'public/442', :status => 442
@@ -31,9 +30,8 @@ class PostsController < ApplicationController
 	end
 	def show
 		post = Post.find(params[:id])
-		comments = Comment.where(post: post)
 		respond_with do |format|
-			format.json {render :json => {:post => post.as_json, :comments => comments.as_json}}
+			format.json {render :json => {:post => post, :comments => post.comments}}
 		end
 	end
 	def connectFacebook
